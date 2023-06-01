@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+                  <div class="col-sm-12">
+                     <div class="card">
+                        <div class="card-body">
+                           <form method="post" action="{% url 'update_student' %}" enctype="multipart/form-data"> <!-- as we are using profile pic img so enctype is used-->
+                               {% csrf_token %}
+                                <div class="col-12">
+                                    <h5 class="form-title"><strong>Edit Student</strong></h5>
+                                </div>
+                               {% if messages %}
+                               {% for message in messages %}
+                               {% if message.tags == 'error' %}
+                               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                   <strong>{{ message }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                               </button>
+                                </div>
+                                   {% endif %}
+                                   {% endfor %}
+                                   {% endif %}
+                               {% if messages %}
+                               {% for message in messages %}
+                               {% if message.tags == 'success' %}
+                              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                   <strong>{{ message }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                               </button>
+                                </div>
+                              {% endif %}
+                              {% endfor %}
+                              {% endif %}
+                               {% if messages %}
+                               {% for message in messages %}
+                               {% if message.tags == 'warning' %}
+                               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                   <strong>{{ message }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                               </button>
+                                </div>
+                                   {% endif %}
+                                   {% endfor %}
+                                   {% endif %}
+                               <div class="col-sm-11">
+                                    <div class="form-group" >
+                                       <label class="required">First Name</label>
+                                       <input type="text" class="form-control" name="first_name" value="{% for i in student %}{{i.student.first_name}}{% endfor %}" required>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group" >
+                                       <label class="required">Last Name</label>
+                                       <input type="text" class="form-control" name="last_name" value="{% for i in student %}{{i.student.last_name}}{% endfor %}" required >
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Scholar Number</label>
+                                       <input type="text" class="form-control" name="scholar_number" value="{% for i in student %}{{i.scholar_number}}{% endfor %}" required>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group" >
+                                       <label class="required">Username</label>
+                                       <input type="text" class="form-control" name="username" value="{% for i in student %}{{i.student.username}}{% endfor %}" required>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group" >
+                                       <label class="required">Password</label>
+                                       <input type="password" class="form-control" name="password" placeholder="Fill only if you want to change password">
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label>Profile Picture</label>
+                                       <input type="file" class="form-control" name="profile_pic" >
+                                        <input type="text" class="form-control" name="student_id" value="{% for i in student%}{{i.student.id}}{% endfor %}" hidden > <!-- this is user id,we update details using this -->
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Course</label>
+                                        <select class="form-control" name="course" required>
+                                            <option value="{% for i in student %}{{i.course.id}}{% endfor %}" hidden>{% for i in student %}{{i.course}}{% endfor %}</option>
+                                            {% for i in course %}
+                                             <option value="{{i.id}}">{{i.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Branch</label> <!-- we have to add statically in website,so we write value attribute -->
+                                         <select class="form-control" name="branch" value="{% for i in student %}{{i.branch}}{% endfor %}" required>
+                                             <option hidden>{% for i in student %}{{i.branch}}{% endfor %}</option>
+                                          <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                                             <option value="Electronics and Communication Engineering">Electronics and Communication Engineering</option>
+                                             <option value="Electrical Engineering">Electrical Engineering</option>
+                                             <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                             <option value="Chemical Engineering">Chemical Engineering</option>
+                                              <option value="Material Science and Metallurgical Engineering">Material Science and MetallurgicalEngineering</option>
+                                             <option>Others</option>
+                                        </select>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Course Year</label> <!-- we have to add statically in website,so we write value attribute -->
+                                        <select class="form-control" name="course_year" value="{% for i in student %}{{i.course_year}}{% endfor %}" required>
+                                            <option hidden>{% for i in student %}{{i.course_year}}{% endfor %}</option>
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </select>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Semester</label>
+                                        <select class="form-control" name="semester" value="{% for i in student %}{{i.semester}}{% endfor %}" required>
+                                             <option hidden>{% for i in student %}{{i.semester}}{% endfor %}</option><!-- we have to add statically in website,so we write value attribute -->
+                                          <option value="I">I</option>
+                                          <option value="II">II</option>
+                                            <option value="III">III</option>
+                                            <option value="IV">IV</option>
+                                            <option value="V">V</option>
+                                            <option value="VI">VI</option>
+                                            <option value="VII">VII</option>
+                                            <option value="VIII">VIII</option>
+                                       </select>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Gender</label>
+                                        <select class="form-control" name="gender"  required>
+                                            <option hidden>{% for i in student %}{{i.gender}}{% endfor %}</option><!-- we have to add statically in website,so we write value attribute-->
+                                          <option value="Male">Male</option>
+                                          <option value="Female">Female</option>
+                                       </select>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">DOB(DD-MM-YYYY)</label>
+                                       <input type="date" class="form-control" name="dob" value="{% for i in student %}{{i.dob}}{% endfor %}" required>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Email</label>
+                                       <input type="text" class="form-control" name="email" value="{% for i in student %}{{i.student.email}}{% endfor %}" required>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Phone Number</label>
+                                       <input type="text" class="form-control" name="phone_number" value="{% for i in student %}{{i.phone_number}}{% endfor %}" required>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Father's Name</label>
+                                       <input type="text" class="form-control" name="father_name" value="{% for i in student %}{{i.father_name}}{% endfor %}" required>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Mother's Name</label>
+                                       <input type="text" class="form-control" name="mother_name" value="{% for i in student %}{{i.mother_name}}{% endfor %}" required>
+                                    </div>
+                               </div>
+
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Father's Phone Number</label>
+                                       <input type="text" class="form-control" name="father_phone_number" value="{% for i in student %}{{i.father_phone_number}}{% endfor %}" required>
+                                    </div>
+                               </div>
+
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Address</label>
+                                       <textarea class="form-control" name="address" required>{% for i in student %}{{i.address}}{% endfor %}</textarea>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label>Guardian Name</label>
+                                       <input type="text" class="form-control" name="guardian_name" value="{% for i in student %}{{i.quardian_name}}{% endfor %}">
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label>Guardian Phone Number</label>
+                                       <input type="text" class="form-control" name="guardian_phone_number" value="{% for i in student %}{{i.guardian_phone_number}}{% endfor %}">
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label>Guardian Address</label>
+                                        <textarea class="form-control" name="guardian_address" >{% for i in student %}{{i.address}}{% endfor %}</textarea>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label>Room Number</label>
+                                       <input type="text" class="form-control" name="Room Number" value="{% for i in student %}{{i.room}}{% endfor %}">
+                                    </div>
+                               </div>
+
+                                 <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Save</button>&nbsp;&nbsp;
+                                 </div>
+                               <!--   <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                 </div> -->
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+
+{% endblock %}

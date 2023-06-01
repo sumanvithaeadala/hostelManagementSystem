@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="col" style="padding-top:3%">
+    {% for y in c reversed %}
+    <div class="col-sm-4" style="padding-bottom: 2rem;">
+        <div class="card" style="width: 75rem;">
+            <div class="card-body">
+                <h4 >Name : {{y.student.student_name}}</h4>
+                <p >ScholarNo: {{y.student.scholar_number}} <br>
+                    Room No : {{y.student.room}} <br>
+                    <br>
+                    Complaint: {{y.message}} <br>
+                    <br>
+                    Status: {% if y.reply == Null %}
+                           <span style="color:red;">Not Replied yet</span>
+                            {% else %}
+                            <span style="color:green;">Replied</span>
+                            <br>
+                            Reply:&nbsp;{{y.reply}}
+                            {% endif %}
+                </p>
+                <div class="actions">
+                                              {% if y.status == False %}
+                                              <a href="{% url 'close_complaint' y.id %}" class="btn btn-success">Close Complaint</a>
+                                              {% elif y.status == True %}
+                                              <button class="btn btn-danger" disabled="disabled">Complaint Closed</button>
+                                              {% endif %}
+
+                                          </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock %}

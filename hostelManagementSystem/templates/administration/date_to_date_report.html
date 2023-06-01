@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+
+        <form method="POST" onsubmit="send.disabled = true; return true;"
+              class="post-form text-center border border-light p-5" action="{% url 'get_report' %}">
+            {% csrf_token %}
+                 <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">From Date</label>
+                                       <input type="date" class="form-control" name="from_date" required>
+                                    </div>
+                               </div>
+                <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">To Date</label>
+                                       <input type="date" class="form-control" name="to_date" required>
+                                    </div>
+                               </div>
+            <button name="send" type="submit" class="btn btn-info my-4 btn-block">Get Report
+            </button>
+
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

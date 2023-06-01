@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content container-fluid">
+               <div class="page-header">
+                  <div class="row">
+                     <div class="col-sm-12">
+                        <h3 class="page-title">Student Details</h3>
+                        <ul class="breadcrumb">
+                           <li class="breadcrumb-item"><a href="students.html">Student</a></li>
+                           <li class="breadcrumb-item active">Student Details</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="card-body">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="about-info">
+                              <div class="media mt-3">
+                                 <img src="/{% for i in student %}{{i.student.profile_pic}}{% endfor %}" class="mr-3" alt="Profile Picture">
+                                 <div class="media-body">
+                                    <ul>
+                                       <li>
+                                          <span class="title-span">Student Name: </span>
+                                          <span class="info-span">{% for i in student %}{{i.student_name}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Scholar Number : </span>
+                                          <span class="info-span">{% for i in student %}{{i.scholar_number}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Course :</span>
+                                          <span class="info-span">{% for i in student %}{{i.course}}{% endfor %}</span>
+                                       </li>
+
+                                       <li>
+                                          <span class="title-span">Branch : </span>
+                                          <span class="info-span">{% for i in student %}{{i.branch}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Course Year : </span>
+                                          <span class="info-span">{% for i in student %}{{i.course_year}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Semester : </span>
+                                          <span class="info-span">{% for i in student %}{{i.semester}}{% endfor %}</span>
+                                       </li>
+
+                                       <li>
+                                          <span class="title-span">Email : </span>
+                                          <span class="info-span">{% for i in student %}{{i.student.email}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Phone Number : </span>
+                                          <span class="info-span">{% for i in student %}{{i.phone_number}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">username : </span>
+                                          <span class="info-span">{% for i in student %}{{i.student.username}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">DOB : </span>
+                                          <span class="info-span">{% for i in student %}{{i.dob}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Father Name : </span>
+                                          <span class="info-span">{% for i in student %}{{i.father_name}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Mother Name : </span>
+                                          <span class="info-span">{% for i in student %}{{i.mother_name}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Father phone No : </span>
+                                          <span class="info-span">{% for i in student %}{{i.father_phone_number}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Address : </span>
+                                          <span class="info-span">{% for i in student %}{{i.address}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Guardian Name : </span>
+                                          <span class="info-span">{% for i in student %}{{i.guardian_name}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Guardian Phone Number : </span>
+                                          <span class="info-span">{% for i in student %}{{i.guardian_phone_number}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Guardian Address : </span>
+                                          <span class="info-span">{% for i in student %}{{i.guardian_address}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Room Number : </span>
+                                          <span class="info-span">{% for i in student %}{{i.room}}{% endfor %}</span>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+
+
+
+
+                              </div>
+
+
+                           </div>
+                        </div>
+                     </div>
+
+                     <div class="row mt-2">
+                        <div class="col-md-12">
+
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+
+{% endblock %}

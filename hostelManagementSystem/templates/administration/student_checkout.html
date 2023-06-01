@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+
+                  <div class="col-sm-12">
+                     <div class="card">
+                        <div class="card-body">
+
+                           <form method="post" action="{% url 'student_checkout_save' %}" enctype="multipart/form-data"> <!-- as we are using profile pic img so enctype is used-->
+                               {% csrf_token %}
+
+                                <div class="col-12">
+                                    <h5 class="form-title"><strong>Student Checkout Application Form</strong></h5>
+                                </div>
+
+                               {% if messages %}
+                               {% for message in messages %}
+                               {% if message.tags == 'error' %}
+                               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                   <strong>{{ message }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                               </button>
+                                </div>
+                                   {% endif %}
+                                   {% endfor %}
+                                   {% endif %}
+                               {% if messages %}
+                               {% for message in messages %}
+                               {% if message.tags == 'success' %}
+                              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                   <strong>{{ message }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                               </button>
+                                </div>
+                              {% endif %}
+                              {% endfor %}
+                              {% endif %}
+                               {% if messages %}
+                               {% for message in messages %}
+                               {% if message.tags == 'warning' %}
+                               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                   <strong>{{ message }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                               </button>
+                                </div>
+                                   {% endif %}
+                                   {% endfor %}
+                                   {% endif %}
+                                <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Date</label>
+                                       <input type="date" class="form-control" name="date" required>
+                                    </div>
+
+                                 <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Send Request</button>
+                                 </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<div class="row">
+    <div class="col-md-12"></div>
+    <div class="col-sm-12 col-md-6 shadow px-3 py-4 m-4 text-dark bg-light" style="border-radius: 25px;">
+               <h4>Date To Date report</h4> <br>
+                <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Total Fee: </p>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <p >{{total_fee }}</p>
+                </div>
+            </div>
+         <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Total Expenses: </p>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <p >{{total_expense }}</p>
+                </div>
+            </div>
+
+                   <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Balance: </p>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <p >{{dict_p }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <a href="" >Go Back</a>
+                </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+
+</div>
+{% endblock %}

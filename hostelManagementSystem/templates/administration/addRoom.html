@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+                  <div class="col-sm-12">
+                     <div class="card">
+                        <div class="card-body">
+                           <form method="post" action="{% url 'add_room' %}" > <!-- as we are using profile pic img so enctype is used-->
+                               {% csrf_token %}
+                                <div class="col-12">
+                                    <h5 class="form-title"><strong>Add Room</strong></h5>
+                                </div>
+                               {% if messages %}
+                               {% for message in messages %}
+                               {% if message.tags == 'error' %}
+                               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                   <strong>{{ message }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                               </button>
+                                </div>
+                                   {% endif %}
+                                   {% endfor %}
+                                   {% endif %}
+                               {% if messages %}
+                               {% for message in messages %}
+                               {% if message.tags == 'success' %}
+                              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                   <strong>{{ message }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                               </button>
+                                </div>
+                              {% endif %}
+                              {% endfor %}
+                              {% endif %}
+                               {% if messages %}
+                               {% for message in messages %}
+                               {% if message.tags == 'warning' %}
+                               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                   <strong>{{ message }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                               </button>
+                                </div>
+                                   {% endif %}
+                                   {% endfor %}
+                                   {% endif %}
+                               <div class="col-sm-11">
+                                    <div class="form-group" >
+                                       <label class="required">Room Number</label>
+                                       <input type="text" class="form-control" name="room_number" required>
+                                    </div>
+                               </div>
+                                <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Type of occupancy</label> <!-- we have to add statically in website,so we write value attribute -->
+                                         <select class="form-control" name="room_type" required>
+                                             <option label=" "></option>
+                                             <option value="S">Single</option>
+                                             <option value="D">Double</option>
+                                             <option value="T">Triple</option>
+                                        </select>
+                                    </div>
+                               </div>
+                                 <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                 </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+
+{% endblock %}

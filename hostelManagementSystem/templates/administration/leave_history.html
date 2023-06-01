@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="content container-fluid">
+               <div class="page-header">
+                  <div class="row align-items-center">
+                     <div class="col">
+                        <h3 class="page-title">Leave History</h3>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="card card-table">
+                        <div class="card-body">
+                           <div class="table-responsive">
+                              <table id="table_id" class="table table-hover table-center mb-0" style="table-layout:fixed;width:100%;" >
+                                 <thead>
+                                    <tr>
+                                        <th>Student Name</th>
+                                        <th>Scholar No</th>
+                                         <th>From Date</th>
+                                        <th>To Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                 {% for i in student_leave reversed %}
+                                    <tr>
+                                        <td>{{i.student.student_name}}</td>
+                                        <td>{{i.student.scholar_number}}</td>
+                                       <td>{{i.from_date}}</td>
+                                       <td>{{i.to_date}}</td>
+                                       <td>
+                                              {% if i.status == 0 %} <!-- status=0 means not seen by warden yet -->
+                                             Not seen by warden yet
+                                              {% elif i.status == 1 %} <!-- status=1 means approved by warden  -->
+                                              Approved
+                                              {% else %} <!-- status=2 means rejected by warden  -->
+                                              Rejected
+                                              {% endif %}
+                                       </td>
+                                    </tr>
+                                     {% endfor %}
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+
+{% endblock %}

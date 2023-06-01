@@ -1,0 +1,166 @@
+{ % load static %}
+<div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+               <div id="sidebar-menu" class="sidebar-menu">
+                  {% if user.userType == '1' %}
+                  <ul>
+                     <li class="menu-title">
+                        <span>Main Menu</span>
+                     </li>
+                     <li class="submenu">
+                        <a href="#"><i class="fas fa-user-graduate"></i> <span> Students</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="{% url 'studentlist' %}">Student List</a></li>
+                           <li><a href="{% url 'add_student' %}">Add Student</a></li>
+                        </ul>
+                     </li>
+                     <li class="submenu">
+                        <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Warden</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="{% url 'wardenlist' %}">Warden List</a></li>
+                           <li><a href="{% url 'add_warden' %}">Add Warden</a></li>
+                        </ul>
+                     </li>
+                     <li class="submenu">
+                        <a href="#"><i class="fas fa-building"></i> <span> Administration</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="{% url 'admin_list' %}">Admins List</a></li>
+                           <li><a href="{% url 'add_admin' %}">Add Admin</a></li>
+                        </ul>
+                     </li>
+                      <li class="submenu">
+                        <a href="#"><i class="fas fa-building"></i> <span> Room</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="{% url 'roomlist_aw' %}">Rooms List</a></li>
+                           <li><a href="{% url 'add_room' %}">Add Room</a></li>
+                           <li><a href="{% url 'approval_list' %}">Change Room Approval</a></li>
+                           <li><a href="{% url 'new_approval_list' %}">New Room Approval</a></li>
+                        </ul>
+                     </li>
+                      <li>
+                        <a href="{% url 'expense_list' %}"><i class="fas fa-file-invoice"></i> <span>Expense List</span></a>
+                     </li>
+                       <li>
+                        <a href="{% url 'date_to_date_report' %}"><i class="far fa-calendar-alt"></i> <span>Date to Date Report</span></a>
+                     </li>
+                     <li class="menu-title">
+                        <span>Management</span>
+                     </li>
+                     <li class="submenu">
+                        <a href="#"><i class="fas fa-file-invoice-dollar"></i> <span> Fees</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="{% url 'fee_history' %}">Fees History</a></li>
+                            <li><a href="{% url 'fee_approval_list' %}">Fees Approval List</a></li>
+                        </ul>
+                     </li>
+                     <li>
+                        <a href="{% url 'complaints_list' %}"><i class="fas fa-box"></i> <span>Complaint Box</span></a>
+                     </li>
+                     <li>
+                        <a href="{% url 'student_checkout_list' %}"><i class="fas fa-check-square"></i> <span>Student Checkout</span></a>
+                     </li>
+                     <li>
+                        <a href="{% url 'student_leave_list' %}"><i class="fas fa-envelope-square"></i> <span>Student Leave List</span></a>
+                     </li>
+                     <li>
+                        <a href="{% url 'doLogout' %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+                     </li>
+                     <li class="menu-title">
+                        <span>Pages</span>
+                     </li>
+                     </li>
+                  </ul>
+                  {% elif user.userType == '3' %}
+                  <ul>
+                      <li class="submenu">
+                        <a href="#"><i class="fas fa-user-graduate"></i> <span> Students</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="{% url 'studentlist' %}">Student List</a></li>
+                           <li><a href="{% url 'add_student' %}">Add Student</a></li>
+                        </ul>
+                          <li class="submenu">
+                        <a href="#"><i class="fas fa-building"></i> <span> Room</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="{% url 'roomlist_aw' %}">Rooms List</a></li>
+                           <li><a href="{% url 'add_room' %}">Add Room</a></li>
+                           <li><a href="{% url 'approval_list' %}">Change Room Approval</a></li>
+                           <li><a href="{% url 'new_approval_list' %}">New Room Approval</a></li>
+                        </ul>
+                     </li>
+                      <li class="submenu">
+                        <a href="#"><i class="fas fa-file-invoice-dollar"></i> <span> Fees</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="{% url 'fee_history' %}">Fees History</a></li>
+                            <li><a href="{% url 'fee_approval_list' %}">Fees Approval List</a></li>
+                        </ul>
+                     </li>
+                       <li>
+                        <a href="{% url 'add_expense' %}"><i class="fas fa-book"></i> <span>Add Expense</span></a>
+                     </li>
+                    <li>
+                        <a href="{% url 'complaints_list' %}"><i class="fas fa-book"></i> <span>Complaint Box</span></a>
+                     </li>
+                     <li>
+                        <a href="{% url 'student_checkout_list' %}"><i class="fas fa-book"></i> <span>Student Checkout</span></a>
+                     </li>
+                     <li>
+                        <a href="{% url 'student_leave_list' %}"><i class="fas fa-book"></i> <span>Student Leave List</span></a>
+                     </li>
+                     <li>
+                        <a href="{% url 'doLogout' %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+                     </li>
+
+                     </li>
+                  </ul>
+
+                  {% else %}
+                  <ul>
+                     <li class="submenu">
+                        <a href="#"><i class="fas fa-building"></i> <span> Room</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="{% url 'roomlist' %}">Rooms List</a></li>
+                           <li><a href="{% url 'room_change' %}">Change Room</a></li>
+                        </ul>
+
+                     </li>
+                       <li class="submenu">
+                        <a href="#"><i class="fas fa-building"></i> <span> Fees</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="{% url 'fee_pay' %}">Fee Pay</a></li>
+                            <li><a href="{% url 'fee_status' %}">Fee Status</a></li>
+                        </ul>
+
+                     </li>
+                       <li class="submenu">
+                        <a href="#"><i class="fas fa-building"></i> <span> student Leave</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="{% url 'student_leave' %}">Apply Leave</a></li>
+                           <li><a href="{% url 'student_leave_history' %}">Leave History</a></li>
+                        </ul>
+
+                     </li>
+                      <li class="submenu">
+                        <a href="#"><i class="fas fa-building"></i> <span>Complaint Box</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="{% url 'student_complaint' %}">Make complaint</a></li>
+                              <li><a href="{% url 'complaint_history' %}">Complaint History</a></li>
+                        </ul>
+
+                     </li>
+                     <li class="submenu">
+                        <a href="#"><i class="fas fa-building"></i> <span> student Checkout</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="{% url 'student_checkout' %}">Apply for Checkout</a></li>
+                           <li><a href="{% url 'student_checkout_status' %}">Checkout Status</a></li>
+                        </ul>
+                     </li>
+                     <li>
+                        <a href="{% url 'doLogout' %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+                     </li>
+                     </ul>
+
+
+                  {% endif %}
+               </div>
+            </div>
+         </div>

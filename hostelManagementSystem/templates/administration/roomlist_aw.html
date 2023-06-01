@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="content container-fluid">
+               <div class="page-header">
+                  <div class="row align-items-center">
+                     <div class="col">
+                        <h3 class="page-title">Rooms</h3>
+                        <ul class="breadcrumb">
+                           <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                           <li class="breadcrumb-item active">Rooms</li>
+                        </ul>
+                     </div>
+                     <div class="col-auto text-right float-right ml-auto">
+                        <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+                        <a href="{% url 'add_room' %}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                     </div>
+                  </div>
+               </div>
+               {% if messages %}
+                               {% for message in messages %}
+                               {% if message.tags == 'success' %}
+                              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                   <strong>{{ message }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                               </button>
+                                </div>
+                              {% endif %}
+                              {% endfor %}
+                              {% endif %}
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="card card-table">
+                        <div class="card-body">
+                           <div class="table-responsive">
+                              <table id="table_id" class="table table-hover table-center mb-0 ">
+                                 <thead>
+                                    <tr>
+                                       <th>Room Number</th>
+                                       <th>Type of Occupancy</th>
+                                         <th>Capacity</th>
+                                        <th>present</th>
+                                        <th>vacant</th>
+                                       <th class="text-right">Action</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                 {% for i in room_data %}
+                                    <tr>
+                                       <td>
+                                          <h2 class="table-avatar">
+                                             <a href="{% url 'roomDetails' i.room_number %}">{{i.room_number}}</a>
+                                          </h2>
+                                       </td>
+                                       <td>{{i.room_type}}</td>
+                                          <td>{{i.capacity}}</td>
+                                       <td>{{i.present}}</td>
+                                       <td>{{i.remains}}</td>
+                                       <td class="text-right">
+                                          <div class="actions">
+                                             <a href="" class="btn btn-sm bg-success-light mr-2">
+                                             <i class="fas fa-pen"></i>
+                                             </a>
+                                             <a href="" class="btn btn-sm bg-danger-light">
+                                             <i class="fas fa-trash"></i>
+                                             </a>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                     {% endfor %}
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+
+{% endblock %}

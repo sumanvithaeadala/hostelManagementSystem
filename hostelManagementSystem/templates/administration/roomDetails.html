@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="column" style="padding-top:10%">
+    {% for i in student_data %}
+<div class="row">
+    <div class="col-md-12"></div>
+    <div class="col-sm-12 col-md-6 shadow px-3 py-4 m-4 text-dark bg-light" style="border-radius: 25px;">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>Student Details in {{i.room}}</h2>
+            </div>
+        <hr >
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Name: </p>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <p >{{i.student_name }}</p>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Scholar Number:</p>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <p >{{i.scholar_number}}</p>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Course:</p>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <p >{{i.course}}</p>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Branch:</p>
+                </div>
+                <div class="col-sm-7 text-right">
+                    <p >{{i.branch}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Course Year:</p>
+                </div>
+                <div class="col-sm-3 text-right">
+                    <p >{{i.course_year}}</p>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Semester:</p>
+                </div>
+                <div class="col-sm-3 text-right">
+                    <p >{{i.semester}}</p>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Email:</p>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <p >{{i.student.email}}</p>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Phone No:</p>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <p >{{i.phone_number}}</p>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Fee Status:</p>
+                </div>
+                <div class="col-sm-5 text-right">
+                  <p>
+                        {% if i.fee_paid == True %}
+                        Fee is paid and approved
+                        {% else %}
+                        Fee is processing
+                        {% endif %}</p>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+  </div>
+</div>
+    {% empty %}
+    <div class="col-sm-12" style="padding-bottom: 5rem;">
+
+        <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+
+            <div class="w3-display-middle">
+                <h1 class="w3-jumbo w3-animate-top">Room is Empty!</h1>
+                <hr class="w3-border-grey" style="margin:auto;width:60%">
+                <p class="w3-large w3-center" style="text-align: center;">
+                <h3>No Students here</h3>
+                </p>
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

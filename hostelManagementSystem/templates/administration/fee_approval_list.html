@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    #popup{
+        position: fixed;
+        left: 40%;
+        top: 40%;
+        height: 130px;
+        width: 300px;
+        display: none;
+        z-index: 100;
+        padding: 20px;
+        background-color: #fff;
+        color: #000;
+    }
+</style>
+
+<div class="confirmPopup" id="popup">
+    <div class="row">
+        <div class="col-sm-12" style="margin-bottom: 20px;">
+            Are you sure?
+        </div>
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-6">
+                    <button id="yes" class="btn btn-outline-success" onclick="confirmed()">Yes</button>
+                </div>
+                <div class="col-sm-6">
+                    <button id="no" class="btn btn-outline-danger" onclick="abort()">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="padding-top:10%;">
+{% for y in fee_data %}
+    <div class="col-sm-4" style="padding-bottom: 5rem;">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h4 class="card-title text-dark">Paid by: {{y.student_name}}</h4>
+                <h6 class="card-title text-dark">({{y.scholar_number}})</h6>
+                <p class="card-title text-dark">Course: {{y.course}}</p>
+               <p class="card-title text-dark">Course: {{y.branch}}</p>
+            </div>
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-dark">Fee Paid on: {{y.date}}</h6>
+                <h6 class="card-title text-dark">Amount: {{y.amount}}</h6>
+                  <a href="/{{y.receipt}}" download>Download Receipt</a>
+<!--                <h6 class="card-subtitle mb-2 text-dark">Old Room: {{y.old}}</h6>-->
+                <div class="row">
+                <div class="col-sm-6">
+                    <form id="{{y.username}}" action="{% url 'fee_approval_confirm' y.username %}"
+                          onsubmit="approve(event,{{y.username}})">
+                        {% csrf_token %}
+
+
+                        <button name="send" class="btn btn-outline-success bs" type="submit">Approve</button>
+
+                    </form>
+                </div>
+                <div class="col-sm-6">
+                    <form action="{% url 'fee_approval_reject' y.username %}"
+                          onsubmit="send.disabled = true; return true;">
+                        {% csrf_token %}
+
+
+                        <button name="send" type="submit" class="btn btn-outline-danger bs">Reject</button>
+
+                    </form>
+                </div>
+
+            </div>
+                </div>
+        </div>
+
+    </div>
+
+    {% empty %}
+    <div class="col-sm-12" style="padding-bottom: 5rem;">
+        <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+            <div class="w3-display-middle">
+                <h1 class="w3-jumbo w3-animate-top">No Pending Requests!</h1>
+                <hr class="w3-border-grey" style="margin:auto;width:60%">
+                <p class="w3-large w3-center" style="text-align: center;">
+                <a href="">Go back</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+    </div>
+<script>
+
+        var target;
+        function approve(event,id){
+        console.log('something');
+        event.preventDefault();
+        target = event.target;
+        $('#popup').show();
+        console.log($('#popup'));
+        console.log('something');
+        var btns = document.getElementsByClassName('bs');
+            console.log(btns);
+            for(let i=0; i<btns.length; i++){
+                btns[i].disabled = true;
+            }
+        }
+
+        function confirmed(){
+            target.submit();
+            var btns = document.getElementsByClassName('btn');
+            console.log(btns);
+            for(let i=0; i<btns.length; i++){
+                btns[i].disabled = true;
+            }
+        }
+
+        function abort(){
+            $('#popup').hide();
+            var btns = document.getElementsByClassName('bs');
+            for(let i=0; i<btns.length; i++){
+                btns[i].disabled = false;
+            }
+        }
+
+
+</script>
+
+{% endblock %}

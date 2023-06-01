@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <h4 class="card-title text-danger">In case you are selecting a room with higher fee amount, please contact your
+        warden after applying.
+        No refund for already paid amount.</h4>
+</div>
+<div class="row" style="padding-top:5%">
+    {% for i in room_data %}
+    <div class="col-sm-4" style="padding-bottom: 5rem;">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h4 class="card-title text-dark">Room No: {{i.room_number}}</h4>
+                <p class="card-text text-dark">Room Type: {{i.room_type}} <br>
+                    Occupied by: {{i.present}} <br>
+                    Vacant: {{i.remains}} <br>
+                    Fees : {{i.fees}}
+                </p>
+                <form method="POST" action="{% url 'room_change_approval' i.room_number %}"
+                      onsubmit="send.disabled = true; return true;">
+                    {% csrf_token %}
+                    {% if i.remains > 0 %}
+                    <button name="send" type="submit" class="btn btn-sm bg-danger-light">Select Room</button>&nbsp;
+                    {% else %}
+                    <h3 style="color: red;">Room Full</h3>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

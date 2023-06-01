@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col" style="padding-top:3%">
+    {% for y in student_complaint reversed %}
+    <div class="col-sm-4" style="padding-bottom: 2rem;">
+        <div class="card" style="width: 75rem;">
+            <div class="card-body">
+                <h4 >Name : {{y.student.student_name}}</h4>
+                <p >ScholarNo: {{y.student.scholar_number}} <br>
+                    Room No : {{y.student.room}} <br>
+                    <br>
+                    {% if y.status == True %}
+                      <button class="btn btn-success" disabled="disabled">Complaint Closed</button>
+                    {% elif y.status == False %}
+                    <button class="btn btn-danger" disabled="disabled">Complaint Not Closed</button>
+                    {% endif %}
+                    <br>
+                    <br>
+                    Complaint: {{y.message}} <br>
+                     <br>
+                    Status: {% if y.reply == Null %}
+                           <span style="color:red;">Not Replied yet</span>
+                            {% else %}
+                            <span style="color:green;">Replied</span>
+                            <br>
+                            Reply:&nbsp;{{y.reply}}
+                            {% endif %}
+
+                </p>
+                <form method="POST" action="{% url 'complaints_reply' y.id %}"
+                      onsubmit=" return true;">
+                    {% csrf_token %}
+                       <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Give Reply</label>
+                                        <textarea class="form-control" name="reply" value="reply" cols="40" rows="10" placeholder="Enter reply" required></textarea>
+                                    </div>
+                               </div>
+                     <button name="send" type="submit" class="btn btn-success">Send Reply</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock %}

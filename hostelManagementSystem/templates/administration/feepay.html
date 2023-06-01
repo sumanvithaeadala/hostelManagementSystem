@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+
+    <div class="w3-display-middle ">
+        <h1 class="w3-jumbo w3-animate-top">Fee Amount is: Rs. {{amount}}</h1>
+        <h2 class="w3-jumbo w3-animate-top">Important Instructions</h2>
+        <hr class="w3-border-grey" style="margin:auto;width:60%">
+        <p class="w3-large w3-center" style="text-align: center;">
+        <div class="row">
+            <div class="col-sm-1"></div>
+                <ul>
+                    <li>Please ensure you have paid the fees (either cash or online payment) to the warden.</li>
+                    <li><strong>Only</strong> apply for Pay Fees if you have done the above.</li>
+                    <li>Once you have given a request, it will go to warden for approval.</li>
+                    <li>The warden can approve or reject your fee payment.</li>
+                    <li>You will get an email alert on action.</li>
+                    <li>Your Fee Status will get updated only after warden has processed your request.</li>
+                </ul>
+        </div>
+        <br><br>
+
+        <form method="post" action="{% url 'fee_register' amount %}" enctype="multipart/form-data" id="form">
+            {% csrf_token %}
+              <div class="col-sm-11">
+                                    <div class="form-group" >
+                                       <label class="required">Student Name</label>
+                                       <input type="text" class="form-control" name="student_name" value="{{student_obj.student_name}}" required >
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group" >
+                                       <label class="required">Scholar Number</label>
+                                       <input type="text" class="form-control" name="scholar_number" value="{{student_obj.scholar_number}}" required  >
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Course</label>
+                                       <input type="text" class="form-control" name="course" value="{{student_obj.course}}" required>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group" >
+                                       <label class="required">Branch</label>
+                                       <input type="text" class="form-control" name="branch" value="{{student_obj.branch}}" required>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group" >
+                                       <label class="required">Receipt</label>
+                                       <input type="file" class="form-control" name="receipt"  required>
+                                    </div>
+                               </div>
+            <button class="btn btn-outline-success" id="submitbutton" >Send Request</button>
+        </form>
+        <br>
+        <a href="">Go back to Student</a>
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+    var form = document.getElementById('form');
+    function formsubmit(event){
+        event.preventDefault();
+        form.submit();
+        document.getElementById('submitbutton').disabled = true;
+
+    }
+
+</script>
+
+
+
+
+{% endblock %}

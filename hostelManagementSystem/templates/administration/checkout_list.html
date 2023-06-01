@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col" style="padding-top:3%">
+    {% for y in checkout %}
+    <div class="col-sm-4" style="padding-bottom: 2rem;">
+        <div class="card" style="width: 75rem;">
+            <div class="card-body">
+                <h4 >Name :      {{y.student.student_name}}</h4>
+                <p >ScholarNo:     {{y.student.scholar_number}} <br>
+                    Checkout Date: {{y.date }}<br>
+                    Fee Paid :   {{y.student.fee_paid }}
+                </p>
+
+                  <div class="actions">
+                                              {% if y.is_accepted == 0 %} <!-- status=0 means not seen by warden yet -->
+                                              <a href="{% url 'student_checkout_accept' y.id %}" class="btn btn-success">Accept</a>&nbsp;
+                                              <a href="{% url 'student_checkout_reject' y.id %}" class="btn btn-danger">Reject</a>
+                                              {% elif y.is_accepted == 1 %} <!-- status=1 means approved by warden  -->
+                                              <button class="btn btn-success" disabled="disabled">Accepted</button>
+                                              {% else %} <!-- status=2 means rejected by warden  -->
+                                              <button class="btn btn-danger" disabled="disabled">Rejected</button>
+                                              {% endif %}
+
+                                          </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock %}

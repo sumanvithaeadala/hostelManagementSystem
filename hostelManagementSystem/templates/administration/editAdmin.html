@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+                  <div class="col-sm-12">
+                     <div class="card">
+                        <div class="card-body">
+                           <form method="post" action="{% url 'update_admin' %}" enctype="multipart/form-data"> <!-- as we are using profile pic img so enctype is used-->
+                               {% csrf_token %}
+                                <div class="col-12">
+                                    <h5 class="form-title"><strong>Edit Admin</strong></h5>
+                                </div>
+                               {% if messages %}
+                               {% for message in messages %}
+                               {% if message.tags == 'error' %}
+                               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                   <strong>{{ message }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                               </button>
+                                </div>
+                                   {% endif %}
+                                   {% endfor %}
+                                   {% endif %}
+                               {% if messages %}
+                               {% for message in messages %}
+                               {% if message.tags == 'success' %}
+                              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                   <strong>{{ message }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                               </button>
+                                </div>
+                              {% endif %}
+                              {% endfor %}
+                              {% endif %}
+                               {% if messages %}
+                               {% for message in messages %}
+                               {% if message.tags == 'warning' %}
+                               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                   <strong>{{ message }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                               </button>
+                                </div>
+                                   {% endif %}
+                                   {% endfor %}
+                                   {% endif %}
+                               <div class="col-sm-11">
+                                    <div class="form-group" >
+                                       <label class="required">First Name</label>
+                                       <input type="text" class="form-control" name="first_name" value="{% for i in admin_obj %}{{i.admin.first_name}}{% endfor %}" required>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group" >
+                                       <label class="required">Last Name</label>
+                                       <input type="text" class="form-control" name="last_name" value="{% for i in admin_obj %}{{i.admin.last_name}}{% endfor %}" required >
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">warden Id</label>
+                                       <input type="text" class="form-control" name="adminId" value="{% for i in admin_obj %}{{i.adminId}}{% endfor %}" required>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group" >
+                                       <label class="required">Username</label>
+                                       <input type="text" class="form-control" name="username" value="{% for i in admin_obj %}{{i.admin.username}}{% endfor %}" required>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group" >
+                                       <label class="required">Password</label>
+                                       <input type="password" class="form-control" name="password" placeholder="Fill only if you want to change password">
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label>Profile Picture</label>
+                                       <input type="file" class="form-control" name="profile_pic" >
+                                        <input type="text" class="form-control" name="adminid" value="{% for i in admin_obj%}{{i.admin.id}}{% endfor %}" hidden > <!-- this is user id,we update details using this -->
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">DOB(DD-MM-YYYY)</label>
+                                       <input type="date" class="form-control" name="dob" value="{% for i in admin_obj %}{{i.dob}}{% endfor %}" required>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Email</label>
+                                       <input type="text" class="form-control" name="email" value="{% for i in admin_obj %}{{i.admin.email}}{% endfor %}" required>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Phone Number</label>
+                                       <input type="text" class="form-control" name="phone_number" value="{% for i in admin_obj %}{{i.phone_number}}{% endfor %}" required>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Dependent's Name</label>
+                                       <input type="text" class="form-control" name="dependent_name" value="{% for i in admin_obj %}{{i.dependent_name}}{% endfor %}" required>
+                                    </div>
+                               </div>
+
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Dependent's Phone Number</label>
+                                       <input type="text" class="form-control" name="dependent_phone_number" value="{% for i in admin_obj %}{{i.dependent_phone_number}}{% endfor %}" required>
+                                    </div>
+                               </div>
+                               <div class="col-sm-11">
+                                    <div class="form-group">
+                                       <label class="required">Address</label>
+                                       <textarea class="form-control" name="address" required>{% for i in admin_obj %}{{i.address}}{% endfor %}</textarea>
+                                    </div>
+                               </div>
+                                 <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Save</button>&nbsp;&nbsp;
+                                 </div>
+                               <!--   <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                 </div> -->
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+
+{% endblock %}

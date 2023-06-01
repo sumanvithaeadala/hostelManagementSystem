@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row" style="padding-top:10%">
+    {% for y in roomdata %}
+    <div class="col-sm-4" style="padding-bottom: 5rem;">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h4 >Room Number: {{y.room_number}}</h4>
+                <p >Room Type: {{y.room_type}} <br>
+                    Occupied by: {{y.present}} <br>
+                    Vacant: {{y.remains}} <br>
+                    Fees: Rs. {{y.fees}}
+                </p>
+                <form method="POST" action="{% url 'selectRoom' y.room_number %}"
+                      onsubmit="send.disabled = true; return true;">
+                    {% csrf_token %}
+                    {% if y.remains > 0 %}
+                     <button name="send" type="submit" class="btn btn-outline-dark">Select Room</button>
+                    {% else %}
+                    <h3 style="color: red;">Room Full</h3>
+                    {% endif %}
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock %}

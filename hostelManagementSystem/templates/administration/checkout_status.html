@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col" style="padding-top:3%">
+    <div class="col-sm-4" style="padding-bottom: 2rem;">
+        <div class="card" style="width: 75rem;">
+            <div class="card-body">
+                <p>Name :      {{c.student.student_name}} <br>
+                  ScholarNo:     {{c.student.scholar_number}} <br>
+                    Checkout Date: {{c.date }} <br>
+                    Status : {% if c.is_accepted == 0 %}
+                              Not seen by warden yet
+                              {% elif c.is_accepted == 1 %}
+                              Accepted
+                              {% else %}
+                               Not Accepted
+                               {% endif %}
+                </p>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

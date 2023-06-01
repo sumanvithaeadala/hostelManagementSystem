@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content container-fluid">
+               <div class="page-header">
+                  <div class="row">
+                     <div class="col-sm-12">
+                        <h3 class="page-title">Warden Details</h3>
+                        <ul class="breadcrumb">
+                           <li class="breadcrumb-item">Warden</li>
+                           <li class="breadcrumb-item active">Warden Details</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="card-body">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="about-info">
+                              <div class="media mt-3">
+                                 <img src="/{% for i in warden_obj %}{{i.warden.profile_pic}}{% endfor %}" class="mr-3" alt="...">
+                                 <div class="media-body">
+                                    <ul>
+                                       <li>
+                                          <span class="title-span">Warden Name: </span>
+                                          <span class="info-span">{% for i in warden_obj %}{{i.warden_name}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Warden ID : </span>
+                                          <span class="info-span">{% for i in warden_obj %}{{i.wardenId}}{% endfor %}</span>
+                                       </li>
+
+                                       <li>
+                                          <span class="title-span">Email : </span>
+                                          <span class="info-span">{% for i in warden_obj %}{{i.warden.email}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Phone Number : </span>
+                                          <span class="info-span">{% for i in warden_obj %}{{i.phone_number}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">username : </span>
+                                          <span class="info-span">{% for i in warden_obj %}{{i.warden.username}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">DOB : </span>
+                                          <span class="info-span">{% for i in warden_obj %}{{i.dob}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Dependent Name : </span>
+                                          <span class="info-span">{% for i in warden_obj %}{{i.dependent_name}}{% endfor %}</span>
+                                       </li>
+
+                                       <li>
+                                          <span class="title-span">Dependent phone No : </span>
+                                          <span class="info-span">{% for i in warden_obj %}{{i.dependent_phone_number}}{% endfor %}</span>
+                                       </li>
+                                       <li>
+                                          <span class="title-span">Address : </span>
+                                          <span class="info-span">{% for i in warden_obj %}{{i.address}}{% endfor %}</span>
+                                       </li>
+
+                                    </ul>
+                                 </div>
+                              </div>
+
+
+
+
+                              </div>
+
+
+                           </div>
+                        </div>
+                     </div>
+
+                     <div class="row mt-2">
+                        <div class="col-md-12">
+
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+
+{% endblock %}

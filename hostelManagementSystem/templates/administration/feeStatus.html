@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<div class="row">
+    <div class="col-md-12"></div>
+    <div class="col-sm-12 col-md-6 shadow px-3 py-4 m-4 text-dark bg-light" style="border-radius: 25px;">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>Fee Status</h2>
+            </div>
+        <hr >
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Name: </p>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <p >{{student_name }}</p>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Scholar Number:</p>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <p >{{scholar_number}}</p>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Course:</p>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <p >{{course}}</p>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Branch:</p>
+                </div>
+                <div class="col-sm-7 text-right">
+                    <p >{{branch}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p >Course Year:</p>
+                </div>
+                <div class="col-sm-3 text-right">
+                    <p >{{course_year}}</p>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-3 text-right">
+                    <p >Status:</p>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <p >
+                        {% if fees == False %}
+                        Fee is processing
+                        {% else %}
+                        Fee is paid and approved
+                        {% endif %}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 text-right">
+                    <p>Amount:</p>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <p >Rs. {{amount}}</p>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <a href="" >Go Back</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+
+</div>
+{% endblock %}
